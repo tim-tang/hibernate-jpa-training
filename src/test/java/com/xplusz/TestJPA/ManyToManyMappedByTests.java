@@ -53,7 +53,7 @@ public class ManyToManyMappedByTests {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback(false)
     public void testSaveItems() throws Exception {
         entityManager.persist(item1);
         
@@ -125,6 +125,9 @@ public class ManyToManyMappedByTests {
     public void testResetTagsWithoutPersist(){
 
         Item item = (Item) entityManager.createQuery("from Item").getResultList().get(0);
+        
+        
+        // assign managed entity to a transient entity.
         Tag tag1 = null;
         for(Tag tag: item.getTags()){
             if(tag.getName().equals("tag1")){
@@ -133,21 +136,21 @@ public class ManyToManyMappedByTests {
             }
         }
         
+        
+        // transient entity.
         Tag tag3 = new Tag();
         tag3.setName("tag3");
              
-//        Set<Tag> tags = new HashSet<Tag>();
-//        
-//        tags.add(tag1);
-//        tags.add(tag3);
+        Set<Tag> tags = new HashSet<Tag>();
+        tags.add(tag1);
+        tags.add(tag3);
+        //reset tags
+        item.setTags(tags);
         
-//        //reset tags
-//        item.setTags(tags);
-        
-        // ***** will use the original set
-        item.getTags().clear();
-        item.addTag(tag1);
-        item.addTag(tag3);
+        // ***** will use the original set will not delete tag2 relation
+//        item.getTags().clear();
+//        item.addTag(tag1);
+//        item.addTag(tag3);
         
         entityManager.merge(item);
         
