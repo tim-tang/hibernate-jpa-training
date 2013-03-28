@@ -4,3 +4,23 @@
 *.jar
 *.war
 *.ear
+*.rar
+*.tar
+*.7z
+*.gz
+*.dmg
+
+# IDE generated files #
+.settings
+.classpath
+.project
+*.iml
+.idea/
+target/
+bin/
+.editorconfig
+
+# Package Files #
+*.jar
+*.war
+*.ear
