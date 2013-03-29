@@ -58,17 +58,24 @@ public class OneToManySortedTests {
         pos.addCategory(category2);
     }
     
+    
+    @Test
+    @Rollback(true)
+    public void testMappedBy(){
+        entityManager.persist(pos);
+        entityManager.flush();
+    }
+    
     /**
      * Not use mappedBy.
      */
     @SuppressWarnings("unchecked")
     @Test
     @Rollback(true)
-    public void testPriority(){     
+    public void testPriority(){
         entityManager.persist(pos);
         
         // hibernate 1 level cache.
-        // avoid dirty read in same transaction.
         // flush cache into database.
         entityManager.flush();
         // clear cache.
@@ -82,7 +89,6 @@ public class OneToManySortedTests {
         }else{
             fail();
         }
-        
     }
     
     /**
