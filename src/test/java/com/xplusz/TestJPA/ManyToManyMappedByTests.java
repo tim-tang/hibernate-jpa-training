@@ -81,7 +81,7 @@ public class ManyToManyMappedByTests {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback(false)
     public void testSaveTags() throws Exception {
         entityManager.persist(tag1);
         entityManager.persist(tag2);
@@ -100,14 +100,13 @@ public class ManyToManyMappedByTests {
 //        tag2.getItems().remove(item1);
         entityManager.persist(item1);
         
+        
         entityManager.flush();
         entityManager.clear();
              
         Set<Tag> tags = new HashSet<Tag>();
         Tag tag3 = new Tag();
         tag3.setName("tag3");
-        
-        tags.add(tag2);
         tags.add(tag3);
         
         //reset tags

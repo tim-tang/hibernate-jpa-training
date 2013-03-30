@@ -29,9 +29,9 @@ public class Account implements Serializable{
     private long accountId;
     
 //    @OneToMany(cascade=CascadeType.ALL)
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
-//    @OneToMany(cascade=CascadeType.ALL, mappedBy="account", orphanRemoval=true)
-    @JoinColumn(name="account_id")  //-- will not generate associated table.
+//    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="account", orphanRemoval=true)
+//    @JoinColumn(name="account_id")  //-- will not generate associated table.
     private Set<Character> characters = new HashSet<Character>(0);
     
     public long getId() {

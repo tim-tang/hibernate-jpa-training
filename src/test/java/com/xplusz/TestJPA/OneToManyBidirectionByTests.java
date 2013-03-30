@@ -79,8 +79,8 @@ public class OneToManyBidirectionByTests {
     @Rollback(false)
     public void testSave(){
         entityManager.persist(account);
-        entityManager.flush();
-        entityManager.clear();
+//        entityManager.flush();
+//        entityManager.clear();
 //        List<Account> accounts = entityManager.createQuery("from Account a left join fetch a.characters").getResultList();
         List<Account> accounts = entityManager.createQuery("from Account").getResultList();
         Account account = accounts.get(0);
@@ -109,7 +109,6 @@ public class OneToManyBidirectionByTests {
     
     @Test
     @Rollback(false)
-    @Ignore
     public void testSaveBidirection(){
         // build bidirection relationship.
 //        for(Character character: account.getCharacters()){
@@ -117,7 +116,7 @@ public class OneToManyBidirectionByTests {
 //        }
         entityManager.persist(account);
         Character character = account.getCharacters().iterator().next();
-        
+        // can not get account by character.
         Assert.assertTrue(character.getAccount()==null);
     }
     
@@ -128,7 +127,7 @@ public class OneToManyBidirectionByTests {
      */
     @Test
     @Rollback(false)
-    @Ignore
+//    @Ignore
     public void testSaveWhenResetCharacters(){
         
         
@@ -136,7 +135,7 @@ public class OneToManyBidirectionByTests {
         account.setAccountId(1L);
         
         //TODO: modify the id here
-        account.setId(211L);
+        account.setId(588L);
            
         Character character3 = new Character();
         character3.setCharacterId(4L);

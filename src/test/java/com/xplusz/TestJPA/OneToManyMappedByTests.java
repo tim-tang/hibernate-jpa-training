@@ -69,13 +69,13 @@ public class OneToManyMappedByTests {
         
         for(Character character: account.getCharacters()){
             if(character.getCharacterId()==1){
-                // if change unique key in entity can not remove the entity.
-//                character.setCharacterId(100L);
+                //if change unique key in entity can not remove the entity.
+                character.setCharacterId(100L);
                 account.getCharacters().remove(character);
             }
         }
         
-//        Assert.assertTrue(account.getCharacters().size()==2);
+        Assert.assertTrue(account.getCharacters().size()==2);
         
         entityManager.merge(account);
         
