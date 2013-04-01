@@ -63,13 +63,13 @@ public class ManyToManyMappedByTests {
 //        entityManager.clear();
         
         
-        item1.removeTag(tag1);
+//        item1.removeTag(tag1);
         // will not drop associated table relationship. cause tag is not owner.
 //        tag1.getItems().remove(item1);
-        entityManager.merge(item1);
+//        entityManager.merge(item1);
         
         // will reload entity from database while other change entity state in database.
-        entityManager.refresh(item1);
+//        entityManager.refresh(item1);
     }
     
     /**
@@ -140,16 +140,16 @@ public class ManyToManyMappedByTests {
         Tag tag3 = new Tag();
         tag3.setName("tag3");
              
-        Set<Tag> tags = new HashSet<Tag>();
-        tags.add(tag1);
-        tags.add(tag3);
+//        Set<Tag> tags = new HashSet<Tag>();
+//        tags.add(tag1);
+//        tags.add(tag3);
         //reset tags
-        item.setTags(tags);
+//        item.setTags(tags);
         
-        // ***** will use the original set will not delete tag2 relation
-//        item.getTags().clear();
-//        item.addTag(tag1);
-//        item.addTag(tag3);
+        //will use the original set will not delete tag2 relation
+        item.getTags().clear();
+        item.addTag(tag1);
+        item.addTag(tag3);
         
         entityManager.merge(item);
         

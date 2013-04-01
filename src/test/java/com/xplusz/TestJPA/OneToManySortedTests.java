@@ -66,6 +66,13 @@ public class OneToManySortedTests {
         entityManager.flush();
     }
     
+    @Test
+    @Rollback(false)
+    public void testJoinColumn(){
+        entityManager.persist(pos);
+        entityManager.flush();
+    }
+    
     /**
      * Not use mappedBy.
      */

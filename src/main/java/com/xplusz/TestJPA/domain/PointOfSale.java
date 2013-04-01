@@ -26,7 +26,7 @@ public class PointOfSale {
 
     @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="pointOfSale")
 //    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    //@JoinColumn(name = "pointOfSale")
+//    @JoinColumn(name = "pointOfSale")
     @OrderBy("priority")
     private List<Category> categories = new ArrayList<Category>();
 
