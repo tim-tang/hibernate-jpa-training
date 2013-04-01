@@ -1,5 +1,7 @@
 package com.xplusz.TestJPA;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xplusz.TestJPA.domain.Account;
 import com.xplusz.TestJPA.domain.Tag;
 
 /**
@@ -39,11 +42,15 @@ public class JPAStateTransition {
         
     }
     
+    /**
+     * Can not persist detached object. 
+     */
     @Test
     @Rollback(false)
     public void testPersist(){
         entityManager.persist(tag);
         entityManager.detach(tag);
+        entityManager.persist(tag);
         entityManager.flush();
     }
     
@@ -62,6 +69,8 @@ public class JPAStateTransition {
     
     /**
      * If remove a detached entity will throw IllegalArgumentException. 
+     * 
+     * 
      */
     @Test
     @Rollback(false)
@@ -71,6 +80,9 @@ public class JPAStateTransition {
         entityManager.remove(tag);
     }
     
+    /**
+     * Detached or transient object will be saveOrUpdated.
+     */
     @Test
     @Rollback(false)
     public void testMerge(){
