@@ -44,6 +44,7 @@ public class JPAStateTransition {
     public void testPersist(){
         entityManager.persist(tag);
         entityManager.detach(tag);
+        entityManager.flush();
     }
     
     /**

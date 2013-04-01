@@ -123,6 +123,8 @@ public class OneToManyBidirectionByTests {
     /**
      * Follow by the results of testSave. Should modify the id of account.
      * 
+     * Test difference between joinColumn and mappedBy
+     * 
      * Merge method will persist/update instance.
      */
     @Test
@@ -135,10 +137,12 @@ public class OneToManyBidirectionByTests {
         account.setAccountId(1L);
         
         //TODO: modify the id here
-        account.setId(588L);
+        account.setId(681L);
            
         Character character3 = new Character();
         character3.setCharacterId(4L);
+        
+//        account.addCharacter(character3);
               
         Set<Character> characters = new HashSet<Character>();
         characters.add(character3);
