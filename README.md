@@ -15,6 +15,6 @@ More detailed info please refer: <http://timtang.me>
 ---
 
 - Use Gradle to do build automation
--Refactor code and  Practise actual TDD
+- Refactor code and practise actual TDD
 - JPA Criteria
 - Hibernate 2-level Cache
