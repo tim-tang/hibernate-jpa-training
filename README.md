@@ -12,6 +12,7 @@
 More detailed info please refer: <http://timtang.me>
 
 # TODO:
+---
 
 - Use Gradle to do build automation
 - Practise actual TDD
