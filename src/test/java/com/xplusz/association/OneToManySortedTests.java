@@ -1,4 +1,4 @@
-package com.xplusz.TestJPA;
+package com.xplusz.association;
 
 import static org.junit.Assert.fail;
 

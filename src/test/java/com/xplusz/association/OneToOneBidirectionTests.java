@@ -1,4 +1,4 @@
-package com.xplusz.TestJPA;
+package com.xplusz.association;
 
 import java.util.List;
 
@@ -18,12 +18,8 @@ import com.xplusz.TestJPA.domain.Character;
 import com.xplusz.TestJPA.domain.Wallet;
 
 
-
 /**
- * Unidirection test.
- * PreConfiguration:
- * 
- * Comment character in entity wallet. 
+ * Bidirection test.
  * 
  * @author angelochen
  * @author timtang
@@ -33,7 +29,7 @@ import com.xplusz.TestJPA.domain.Wallet;
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration
 @Transactional
-public class OneToOneUnidirectionTests {
+public class OneToOneBidirectionTests {
     
     @PersistenceContext
     private EntityManager entityManager;
@@ -54,50 +50,21 @@ public class OneToOneUnidirectionTests {
         
         //set wallet to character
         character.setWallet(wallet);
+        wallet.setCharacter(character);
         
     }
     
     /**
-     * Generate 2 insertion SQL. 
+     * Generate 2 insertions and 1 update. 
      */
     @Test
     @Rollback(false)
     public void testSave(){
-        entityManager.persist(character);       
+        entityManager.persist(character);
     }
     
     /**
-     * Generate 2 SQL. (N+1)
-     */
-    @Test
-    @Rollback(false)
-    public void testGet(){
-        List<Character> characters = entityManager.createQuery("from Character").getResultList();
-        Character character = characters.get(0);
-        Wallet wallet = null;
-        if(character!=null){
-            wallet = character.getWallet();
-            wallet.getCurrency();
-        }       
-    }
-    
-    /**
-     * Generate 1 SQL. 
-     */
-    @Test
-    @Rollback(false)
-    public void testGetJoin(){
-        List<Character> characters = entityManager.createQuery("from Character c join fetch c.wallet").getResultList();
-        Character character = characters.get(0);
-        Wallet wallet = null;
-        if(character!=null){
-            wallet = character.getWallet();
-            wallet.getCurrency();
-        } 
-    }
-    
-    /**
-     * Generate 2 deletion SQL.
+     * Generate 1 update 2 deletions.
      */
     @Test
     @Rollback(false)
@@ -108,4 +75,5 @@ public class OneToOneUnidirectionTests {
             entityManager.remove(character);
         }
     }
+
 }

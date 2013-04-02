@@ -1,4 +1,4 @@
-package com.xplusz.TestJPA;
+package com.xplusz.association;
 
 import java.util.List;
 
@@ -18,8 +18,12 @@ import com.xplusz.TestJPA.domain.Character;
 import com.xplusz.TestJPA.domain.Wallet;
 
 
+
 /**
- * Bidirection test.
+ * Unidirection test.
+ * PreConfiguration:
+ * 
+ * Comment character in entity wallet. 
  * 
  * @author angelochen
  * @author timtang
@@ -29,7 +33,7 @@ import com.xplusz.TestJPA.domain.Wallet;
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration
 @Transactional
-public class OneToOneBidirectionTests {
+public class OneToOneUnidirectionTests {
     
     @PersistenceContext
     private EntityManager entityManager;
@@ -50,21 +54,50 @@ public class OneToOneBidirectionTests {
         
         //set wallet to character
         character.setWallet(wallet);
-        wallet.setCharacter(character);
         
     }
     
     /**
-     * Generate 2 insertions and 1 update. 
+     * Generate 2 insertion SQL. 
      */
     @Test
     @Rollback(false)
     public void testSave(){
-        entityManager.persist(character);
+        entityManager.persist(character);       
     }
     
     /**
-     * Generate 1 update 2 deletions.
+     * Generate 2 SQL. (N+1)
+     */
+    @Test
+    @Rollback(false)
+    public void testGet(){
+        List<Character> characters = entityManager.createQuery("from Character").getResultList();
+        Character character = characters.get(0);
+        Wallet wallet = null;
+        if(character!=null){
+            wallet = character.getWallet();
+            wallet.getCurrency();
+        }       
+    }
+    
+    /**
+     * Generate 1 SQL. 
+     */
+    @Test
+    @Rollback(false)
+    public void testGetJoin(){
+        List<Character> characters = entityManager.createQuery("from Character c join fetch c.wallet").getResultList();
+        Character character = characters.get(0);
+        Wallet wallet = null;
+        if(character!=null){
+            wallet = character.getWallet();
+            wallet.getCurrency();
+        } 
+    }
+    
+    /**
+     * Generate 2 deletion SQL.
      */
     @Test
     @Rollback(false)
@@ -75,5 +108,4 @@ public class OneToOneBidirectionTests {
             entityManager.remove(character);
         }
     }
-
 }

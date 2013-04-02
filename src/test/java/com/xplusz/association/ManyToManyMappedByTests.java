@@ -1,4 +1,4 @@
-package com.xplusz.TestJPA;
+package com.xplusz.association;
 
 import java.util.HashSet;
 import java.util.Set;

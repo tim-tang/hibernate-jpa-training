@@ -1,4 +1,4 @@
-package com.xplusz.TestJPA;
+package com.xplusz.association;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
