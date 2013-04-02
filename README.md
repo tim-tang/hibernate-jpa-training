@@ -10,3 +10,10 @@
     $WORKSPACE/spring-jpa-utility/src/test/java/com/xplusz/TestJPA
    
 More detailed info please refer: <http://timtang.me>
+
+# TODO:
+
+- Use Gradle to do build automation
+- Practise actual TDD
+- JPA Criteria
+- Hibernate 2-level Cache
