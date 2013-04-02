@@ -1,15 +1,11 @@
-hibernate-jpa-training
-======================
-
-Spring integrated JUnit test cases for  hibernate-jpa training.
-
-##USAGE:
+#USAGE:
 ---
-- First create database jpa.
+
+- We use postgresql as database, so first create database jpa.
 
     $ createdb jpa
 
-- Run JUnit test cases for testing. Under package:
+- Run JUnit test cases for exercise, under package:
 
     $WORKSPACE/spring-jpa-utility/src/test/java/com/xplusz/TestJPA
-    
+   
