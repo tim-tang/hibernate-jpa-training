@@ -9,3 +9,4 @@
 
     $WORKSPACE/spring-jpa-utility/src/test/java/com/xplusz/TestJPA
    
+More detailed info please refer: <http://timtang.me>
